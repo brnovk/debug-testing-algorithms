@@ -1,0 +1,82 @@
+﻿<Window x:Class="DebugConvertRusNamesToDativeCase.View.Windows.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:util="clr-namespace:DebugConvertRusNamesToDativeCase.Util"
+		WindowStartupLocation="CenterScreen"
+		Height="300" 
+		Width="550"
+		mc:Ignorable="d">
+
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<!-- Button icons in SVG -->
+				<ResourceDictionary Source="../Util/SvgIconsDictionary.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<Label Grid.Row="1" Grid.Column="0" Content="Last name:" />
+		<Label Grid.Row="1" Grid.Column="1" Content="First name:" />
+		<Label Grid.Row="1" Grid.Column="2" Content="Patronymic:" />
+
+		<TextBox Grid.Row="2" Grid.Column="0" Name="LastNameTextBox" Margin="5"
+		         TextChanged="TextBox_OnTextChanged" HorizontalScrollBarVisibility="Auto" />
+		<TextBox Grid.Row="2" Grid.Column="1" Name="FirstNameTextBox" Margin="5"
+		         TextChanged="TextBox_OnTextChanged" HorizontalScrollBarVisibility="Auto" />
+		<TextBox Grid.Row="2" Grid.Column="2" Name="PatronymicTextBox" Margin="5"
+		         TextChanged="TextBox_OnTextChanged" HorizontalScrollBarVisibility="Auto" />
+
+		<!-- ReSharper disable once MarkupAttributeTypo -->
+		<Rectangle Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="5 2.5" 
+		           Fill="{x:Static util:Constants.BackColor9_DiSerria}" />
+		<Label Grid.Row="3" Grid.Column="0" Content="Sex:" 
+		       VerticalAlignment="Center" HorizontalAlignment="Right" />
+		<RadioButton Grid.Row="3" Grid.Column="1" GroupName="Sex" Name="MaleRadioButton" 
+		             Content="Male" Checked="RadioButton_OnChecked" 
+		             Unchecked="RadioButton_OnChecked" Margin="5"
+		             VerticalAlignment="Center" />
+		<RadioButton Grid.Row="3" Grid.Column="2" GroupName="Sex" Name="FemaleRadioButton"
+		             Content="Female" Checked="RadioButton_OnChecked" 
+		             Unchecked="RadioButton_OnChecked" Margin="5" 
+		             VerticalAlignment="Center" />
+
+		<Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Name="ConvertButton" Cursor="Hand"
+		        Click="ConvertButton_OnClick" Margin="5">
+			<StackPanel Orientation="Horizontal">
+				<Rectangle Width="20" Margin="5 0">
+					<Rectangle.Fill>
+						<VisualBrush Visual="{StaticResource ConvertSvgIcon}" Stretch="Uniform" />
+					</Rectangle.Fill>
+				</Rectangle>
+				<TextBlock Text="Convert" VerticalAlignment="Center" 
+				           TextTrimming="CharacterEllipsis"/>
+			</StackPanel>
+		</Button>
+
+		<Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" 
+		       Content="Last name / First name / Patronymic in Dative case:" />
+		<TextBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Name="ResultTextBox" 
+		         HorizontalScrollBarVisibility="Auto" Margin="5" />
+	</Grid>
+</Window>
